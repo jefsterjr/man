@@ -1,24 +1,44 @@
 API to query installable and incompatible features on trucks.
 
-## Prerequisites
+### Pre-requisites
 
 - Docker
 - JDK 11
 - Maven
 
-## Installation
+### Installation
 
 In the application directory run:
 
 ```
-mvn package
+mvn clean install package
 ```
+### Change file directory
 
-## Usage
+Open .env file and change DIRECTORY_PATH={your-new-directory-path} 
 
-In the application directory folder run
+### Running Tests
+
+To run the tests, acess the project folder(fota or file-processor) and run:
+```
+mvn test
+```
+### Usage
+
+In the application directory folder run to start the container
 ```
  docker-compose up
 ```
-## Database Diagram
+To the stop the container and delete the image.
+
+```
+ docker-compose down -v --rmi local
+```
+
+### Swagger
+```
+http://localhost:8400/fota/swagger-ui.html
+```
+
+### Database Diagram
 ![alt text](https://github.com/jefsterjr/man/blob/master/man.png)
