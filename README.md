@@ -8,7 +8,7 @@ API to query installable and incompatible features on trucks.
 
 ### Installation
 
-In the application directory run:
+In applications(fota and file-processor) directory run:
 
 ```
 mvn clean install package
