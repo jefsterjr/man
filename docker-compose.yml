@@ -1,0 +1,36 @@
+version: "3"
+services:
+  db_postgres:
+    build: ./postgres
+    environment: 
+      POSTGRES_PASSWORD: postgres
+    restart: unless-stopped
+
+  # APP*****************************************
+  file-processor:
+    build: ./file-processor
+    depends_on:
+      - db_postgres
+    links:
+      - db_postgres
+    volumes: 
+      - ${DIRECTORY_PATH}:/usr/app
+    environment:
+        - "SPRING_PROFILES_ACTIVE=prod"     
+
+  fota:
+    build: ./fota
+    expose:
+      - 8400
+    ports:
+      - 8400:8400
+    restart: unless-stopped
+    depends_on:
+      - db_postgres
+    links:
+      - db_postgres
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"  
+volumes:
+  postgres-data:
+  
